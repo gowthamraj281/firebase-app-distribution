@@ -96,7 +96,7 @@ runs:
       shell: bash
       run: |
         firebase appdistribution:distribute \
-          --appId ${{ inputs.appId }} \
+          --app ${{ inputs.appId }} \
           --token "${{ inputs.token }}" \
           --release-notes "${{ inputs.release-notes }}" \
           --release-notes-file "${{ inputs.release-notes-file }}" \
