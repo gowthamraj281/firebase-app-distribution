@@ -49,7 +49,7 @@ And then make sure in Google Cloud IAM, the user "firebase-adminsdk" has the per
 
 #### 1. Define `serviceCredentialsFileContent` in this action (recommended)
 
-Required Content of Service Credentials private key JSON file. [Learn here how to generate one](https://firebase.google.com/docs/app-distribution/authenticate-service-account?platform=ios). This action will set up the environment variable `GOOGLE_APPLICATION_CREDENTIALS` for you.
+Required Content of Service Credentials private key JSON file. This action will set up the environment variable `GOOGLE_APPLICATION_CREDENTIALS` for you.
 
 ```yml
 serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
