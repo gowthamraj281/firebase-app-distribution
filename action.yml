@@ -2,8 +2,8 @@ name: Firebase App Distribution
 description: GitHub Action that uploads artifacts to Firebase App Distribution within seconds
 author: Gowtham Raj
 branding:
-  icon: 'Purple'
-  color: 'green'
+  icon: 'package'
+  color: 'purple'
 inputs:
   file:
     description: The release binary file to upload.
@@ -15,10 +15,10 @@ inputs:
     description: A refresh token that's printed when you authenticate your CI environment with the Firebase CLI (read Use the CLI with CI systems for more information).
     required: false
     deprecationMessage: Authenticating with `--token` is deprecated and will be removed in a future major version of `firebase-tools`. Instead, use a service account key with `GOOGLE_APPLICATION_CREDENTIALS` - https://cloud.google.com/docs/authentication/getting-started
-  serviceCredentialsFileContent:
+  credentials:
     description: Content of the service account credentials file
     required: false
-  serviceCredentialsFile:
+  credentials-file:
     description: Path to the Google service account credentials file
     required: false
   release-notes:
@@ -61,15 +61,16 @@ runs:
     
     - name: Export content of credentials file as environment variable
       shell: bash
-      if: ${{ inputs.serviceCredentialsFileContent == null && inputs.serviceCredentialsFile != null }}
+      if: ${{ inputs.credentials == null && inputs.credentials-file != null }}
       run: |
-        echo "GOOGLE_APPLICATION_CREDENTIALS=${{ inputs.serviceCredentialsFile }}" >> $GITHUB_ENV
+        echo "GOOGLE_APPLICATION_CREDENTIALS=${{ inputs.credentials-file }}" >> $GITHUB_ENV
     
     - name: Export credentials as environment variable
       shell: bash
-      if: ${{ inputs.serviceCredentialsFileContent != null }}
+      if: ${{ inputs.credentials != null }}
       run: |
-        echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
+        echo '${{ inputs.credentials }}' > $RUNNER_TEMP/credentials.json
+        echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/credentials.json" >> $GITHUB_ENV
     
     - name: Install Firebase CLI if not installed
       shell: bash
