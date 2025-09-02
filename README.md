@@ -16,9 +16,9 @@ jobs:
       - uses: gowthamraj281/firebase-app-distribution@v1
         with:
           file: app.apk or app.IPA
-          appId: ${{ secrets.FIREBASE_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
-          serviceCredentialsFile: ${{ secrets.FIREBASE_CREDENTIALS_FILE }}  # Optional: Required only if you don't use serviceCredentialsFileContent.
+          app: ${{ secrets.FIREBASE_APP_ID }}
+          credentials: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+          credentials-file: ${{ secrets.FIREBASE_CREDENTIALS_FILE }}  # Optional: Required only if you don't use serviceCredentialsFileContent.
           release-notes: ""                    # Optional
           release-notes-file: ""               # Optional
           testers: ""                          # Optional
@@ -47,7 +47,7 @@ And then make sure in Google Cloud IAM, the user "firebase-adminsdk" has the per
 
 ### Use credentials in this action
 
-#### 1. Define `serviceCredentialsFileContent` in this action (recommended)
+#### 1. Define `credentials` in this action (recommended)
 
 Required Content of Service Credentials private key JSON file. This action will set up the environment variable `GOOGLE_APPLICATION_CREDENTIALS` for you.
 
@@ -55,9 +55,9 @@ Required Content of Service Credentials private key JSON file. This action will 
 serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
 ```
 
-#### 2. Define `serviceCredentialsFile` to use credentials in project file
+#### 2. Define `credentials-file` to use credentials in project file
 
-Check in the credentials file in the project and configure it's path as action secret `FIREBASE_CREDENTIALS_FILE`, use it on the parameter `serviceCredentialsFile`. This action will set up the environment variable `GOOGLE_APPLICATION_CREDENTIALS` for you.
+Check in the credentials file in the project and configure it's path as action secret `FIREBASE_CREDENTIALS_FILE`, use it on the parameter `credentials-file`. This action will set up the environment variable `GOOGLE_APPLICATION_CREDENTIALS` for you.
 
 ```yml
 serviceCredentialsFile: ${{ secrets.FIREBASE_CREDENTIALS_FILE }}
