@@ -39,17 +39,17 @@ According to Google, we have to start using [service account for authenticating 
 
 To get the credentials you can go to your Firebase project -> Project settings -> Service account -> Generate new private key.
 
-![google-service-account-credentials](.docs/assets/google-service-account-credentials.png?raw=true)
+![google-service-account-credentials](https://github.com/gowthamraj281/firebase-app-distribution/blob/main/.docs/assests/google-service-account-credentials.png)
 
 And then make sure in Google Cloud IAM, the user "firebase-adminsdk" has the permission "Firebase App Distribution Admin SDK Service Agent".
 
-![google-service-account-permission](.docs/assets/google-service-account-permission.png?raw=true)
+![google-service-account-permission](https://github.com/gowthamraj281/firebase-app-distribution/blob/main/.docs/assests/google-service-account-permission.png))
 
 ### Use credentials in this action
 
 #### 1. Define `serviceCredentialsFileContent` in this action (recommended)
 
-Required Content of Service Credentials private key JSON file. [Learn here how to generate one](https://github.com/wzieba/Firebase-Distribution-Github-Action/wiki/FIREBASE_TOKEN-migration). This action will set up the environment variable `GOOGLE_APPLICATION_CREDENTIALS` for you.
+Required Content of Service Credentials private key JSON file. [Learn here how to generate one](https://firebase.google.com/docs/app-distribution/authenticate-service-account?platform=ios). This action will set up the environment variable `GOOGLE_APPLICATION_CREDENTIALS` for you.
 
 ```yml
 serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
