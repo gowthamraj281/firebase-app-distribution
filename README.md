@@ -52,7 +52,7 @@ And then make sure in Google Cloud IAM, the user "firebase-adminsdk" has the per
 Required Content of Service Credentials private key JSON file. This action will set up the environment variable `GOOGLE_APPLICATION_CREDENTIALS` for you.
 
 ```yml
-serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+credentials: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
 ```
 
 #### 2. Define `credentials-file` to use credentials in project file
@@ -60,7 +60,7 @@ serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
 Check in the credentials file in the project and configure it's path as action secret `FIREBASE_CREDENTIALS_FILE`, use it on the parameter `credentials-file`. This action will set up the environment variable `GOOGLE_APPLICATION_CREDENTIALS` for you.
 
 ```yml
-serviceCredentialsFile: ${{ secrets.FIREBASE_CREDENTIALS_FILE }}
+credentials-file: ${{ secrets.FIREBASE_CREDENTIALS_FILE }}
 ```
 
 ## Limitations and improvements
