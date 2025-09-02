@@ -1,4 +1,4 @@
-name: App distribution through Firebase
+name: Distribute App via Firebase App Distribution
 description: GitHub Action that uploads artifacts to Firebase App Distribution within seconds
 author: Gowtham Raj
 branding:
