@@ -55,26 +55,19 @@ runs:
   using: composite
   steps:
     
-    - name: Checking node version
-      id: node-version-above-20
-      shell: bash
-      run: bash etc/compare-node-version.sh
-      continue-on-error: true
-    
     - uses: actions/setup-node@v4
-      if: ${{ steps.node-version-above-20.conclusion == 'failure' }}
       with:
         node-version: '20.x'
     
     - name: Export content of credentials file as environment variable
       shell: bash
-      if: ${{ inputs.credentials == null && inputs.credentials-file != null }}
+      if: ${{ inputs.serviceCredentialsFileContent == null && inputs.serviceCredentialsFile != null }}
       run: |
-        echo "GOOGLE_APPLICATION_CREDENTIALS=${{ inputs.credentials-file }}" >> $GITHUB_ENV
+        echo "GOOGLE_APPLICATION_CREDENTIALS=${{ inputs.serviceCredentialsFile }}" >> $GITHUB_ENV
     
     - name: Export credentials as environment variable
       shell: bash
-      if: ${{ inputs.credentials != null }}
+      if: ${{ inputs.serviceCredentialsFileContent != null }}
       run: |
         echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
     
