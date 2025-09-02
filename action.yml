@@ -1,5 +1,5 @@
 name: Distribute App via Firebase App Distribution
-description: GitHub Action that uploads artifacts to Firebase App Distribution within seconds
+description: GitHub Action that instantly distributes your app builds through Firebase App Distribution.
 author: Gowtham Raj
 branding:
   icon: 'package'
