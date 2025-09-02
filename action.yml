@@ -1,8 +1,8 @@
 name: Firebase App Distribution
 description: GitHub Action that uploads artifacts to Firebase App Distribution within seconds
-author: Gowtham
+author: Gowtham Raj
 branding:
-  icon: 'package'
+  icon: 'Purple'
   color: 'green'
 inputs:
   file:
