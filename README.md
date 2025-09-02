@@ -6,6 +6,32 @@ This action uploads artifacts (.apk,.aab or .ipa) to Firebase App Distribution.
 
 ## Usage
 
+### macOS Apple Silicon (M1/M2/M4) Support
+
+To use this Action on **Apple Silicon macOS runners**, you must perform the following pre-setup:
+
+```yml
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install Firebase CLI (ARM64 compatible)
+        run: npm install -g firebase-tools
+      
+      - name: Authenticate Firebase using Service Account
+        env:
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT_KEY" > /tmp/firebase-key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-key.json
+          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-key.json" >> $GITHUB_ENV
+```
+
 Add the following step to your workflow.
 
 ```yml
