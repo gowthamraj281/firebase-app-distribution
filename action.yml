@@ -8,7 +8,7 @@ inputs:
   file:
     description: The release binary file to upload.
     required: true
-  app:
+  appId:
     description: Your app's Firebase App ID. You can find the App ID in the Firebase console, on the General Settings page.
     required: true
   token:
@@ -96,7 +96,7 @@ runs:
       shell: bash
       run: |
         firebase appdistribution:distribute \
-          --app ${{ inputs.app }} \
+          --app ${{ inputs.appId }} \
           --token "${{ inputs.token }}" \
           --release-notes "${{ inputs.release-notes }}" \
           --release-notes-file "${{ inputs.release-notes-file }}" \
